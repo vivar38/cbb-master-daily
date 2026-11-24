@@ -1,0 +1,58 @@
+name: CBB daily fitted baseline
+on:
+  schedule:
+    - cron: '17 12,14 * 1-4,11-12 *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: cbb-daily-baseline
+  cancel-in-progress: false
+jobs:
+  daily:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Determine date and check for existing forecast
+        id: date
+        shell: bash
+        run: |
+          DAY=$(TZ=America/New_York date +%F)
+          echo "day=$DAY" >> "$GITHUB_OUTPUT"
+          if [[ -d "forecasts/$DAY" ]]; then
+            echo "needed=false" >> "$GITHUB_OUTPUT"
+            echo "Already published $DAY; keeping original dated baseline."
+          else
+            echo "needed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - uses: actions/setup-python@v5
+        if: steps.date.outputs.needed == 'true'
+        with:
+          python-version: '3.13'
+          cache: pip
+      - name: Install pinned dependencies
+        if: steps.date.outputs.needed == 'true'
+        run: python -m pip install -r requirements.txt
+      - name: Verify original fitted engine and coefficients
+        if: steps.date.outputs.needed == 'true'
+        run: |
+          echo '6fb9d8e192c62aadf27a6c1b9cfb0b67387bd1520f91fa245be8cd2bbdb05059  cbb_model.py' | sha256sum -c -
+          echo '4e624ccde46cb82bf9eb9d0eba6486bd910b3433df6918d9589f57d83607e529  holdout_model.joblib' | sha256sum -c -
+      - name: Download, calculate and validate
+        if: steps.date.outputs.needed == 'true'
+        env:
+          FORECAST_DATE: ${{ steps.date.outputs.day }}
+        run: |
+          python run_daily_baseline.py --date "$FORECAST_DATE" --season 2027 --model holdout_model.joblib --refresh
+          python publish_daily.py --date "$FORECAST_DATE" --season 2027
+      - name: Publish dated output and latest report
+        if: steps.date.outputs.needed == 'true'
+        env:
+          FORECAST_DATE: ${{ steps.date.outputs.day }}
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add "forecasts/$FORECAST_DATE" LATEST.md
+          git commit -m "CBB baseline $FORECAST_DATE"
+          git push
