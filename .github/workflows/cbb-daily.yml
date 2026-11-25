@@ -1,4 +1,4 @@
-name: CBB daily fitted baseline
+name: CBB daily fitted baseline v1.1
 on:
   schedule:
     - cron: '17 12,14 * 1-4,11-12 *'
@@ -20,7 +20,7 @@ jobs:
         run: |
           DAY=$(TZ=America/New_York date +%F)
           echo "day=$DAY" >> "$GITHUB_OUTPUT"
-          if [[ -d "forecasts/$DAY" ]]; then
+          if [[ -d "forecasts_v11/$DAY" ]]; then
             echo "needed=false" >> "$GITHUB_OUTPUT"
             echo "Already published $DAY; keeping original dated baseline."
           else
@@ -34,11 +34,15 @@ jobs:
       - name: Install pinned dependencies
         if: steps.date.outputs.needed == 'true'
         run: python -m pip install -r requirements.txt
-      - name: Verify original fitted engine and coefficients
+      - name: Verify fitted engine and versioned margin artifacts
         if: steps.date.outputs.needed == 'true'
         run: |
           echo '6fb9d8e192c62aadf27a6c1b9cfb0b67387bd1520f91fa245be8cd2bbdb05059  cbb_model.py' | sha256sum -c -
           echo '4e624ccde46cb82bf9eb9d0eba6486bd910b3433df6918d9589f57d83607e529  holdout_model.joblib' | sha256sum -c -
+          echo '6b05bd6a6123e6c744d99e79533882826549120bf6a310e1420a61e7799b4a49  margin_v11.py' | sha256sum -c -
+          echo '6071925eec4251bf5e249ed8f89333826fb63547b262a71c658c9fdf13ef564f  margin_v11.joblib' | sha256sum -c -
+          echo '675ed0d137f4ea9f0489ab2326bd675a52179f00292818c03f118bf4a22e0c22  run_daily_baseline.py' | sha256sum -c -
+          echo '3ecb5e9b3ff1b94a2e312019288529f9a1c912f28d5245043163a5ca2ac23c5a  publish_daily.py' | sha256sum -c -
       - name: Download, calculate and validate
         if: steps.date.outputs.needed == 'true'
         env:
@@ -53,6 +57,6 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add "forecasts/$FORECAST_DATE" LATEST.md
-          git commit -m "CBB baseline $FORECAST_DATE"
+          git add "forecasts_v11/$FORECAST_DATE" LATEST.md
+          git commit -m "CBB v1.1 baseline $FORECAST_DATE"
           git push
