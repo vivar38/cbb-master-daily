@@ -18,6 +18,7 @@ from scipy.special import ndtr
 
 from cbb_model import (TeamState, get_feat, normalize_games, snapshot_state,
                        update_states, MARGIN_COLS, TOTAL_COLS)
+from margin_v11 import build as build_v11, features as features_v11, State as StateV11
 from fetch_sportsdataverse import fetch_public_asset, convert_one_year, NAMES
 
 # Verified against the 2027 schedule: ACC, Big East, Big Ten, Big 12, SEC.
@@ -65,6 +66,8 @@ def forecast(converter_games:pd.DataFrame, schedule:pd.DataFrame, model:dict,
     s=s.sort_values('game_id').drop_duplicates('game_id')
     games=converter_games.loc[converter_games.DayNum.lt(season_day)].copy()
     states=states_before_day(games,season,season_day)
+    enh=model["enhanced_margin"]
+    enhanced_states=build_v11(normalize_games(games),enh["prior"],emit=False) if not games.empty else {}
     rows=[]; skipped=[]
     for _, g in s.iterrows():
         try:
@@ -81,12 +84,17 @@ def forecast(converter_games:pd.DataFrame, schedule:pd.DataFrame, model:dict,
             f=get_feat(game,states)
             x_m=pd.DataFrame([f])[model['margin_cols']]
             x_t=pd.DataFrame([f])[model['total_cols']]
-            m=float(model['margin_model'].predict(x_m)[0]);t=float(model['total_model'].predict(x_t)[0])
+            original_margin=float(model['margin_model'].predict(x_m)[0]);t=float(model['total_model'].predict(x_t)[0])
+            ff=features_v11(enhanced_states.get(a,StateV11()),enhanced_states.get(b,StateV11()),venue,season_day,enh['prior'])
+            m=float(enh['model'].predict(pd.DataFrame([ff])[enh['cols']])[0])*enh['weight']+original_margin*(1-enh['weight'])
+            bucket=f"{int(ff['n']<5)}:{int(abs(m)>=15)}"
+            scale=enh['scales'][bucket]
+            if abs(m)>=t: raise ValueError('Incoherent score projection')
             a_score=(t+m)/2;b_score=(t-m)/2
             home_s=a_score if a==home else b_score
             away_s=b_score if a==home else a_score
             hmargin=home_s-away_s
-            hprob=float(ndtr(hmargin/max(float(model['margin_residual_sd']),1)))
+            hprob=float(ndtr(hmargin/max(float(scale['sd']),1)))
             rows.append({'season':season,'game_date':day.isoformat(),'game_id':gid,
                          'home_id':home,'away_id':away,
                          'home_name':g.get('home_display_name',str(home)),
@@ -96,7 +104,8 @@ def forecast(converter_games:pd.DataFrame, schedule:pd.DataFrame, model:dict,
                          'home_pred_score':round(home_s,2),'away_pred_score':round(away_s,2),
                          'home_pred_margin':round(hmargin,2),'pred_total':round(t,2),
                          'home_win_prob_uncalibrated':round(hprob,4),
-                         'source_status':'FITTED_HISTORICAL_BASELINE_ONLY_NO_16PT_AUDIT',
+                         'source_status':'V1.1_FITTED_BASELINE_ONLY_NO_16PT_AUDIT',
+                         'model_version':'v1.1','margin_error_scale':round(scale['sd'],4),'total_error_scale':round(scale['total_rmse'],4),'uncertainty_bucket':bucket,
                          'data_cutoff_exclusive':day.isoformat()})
         except (ValueError,TypeError,KeyError) as exc:
             skipped.append({'game_id':str(g.get('game_id','')),'reason':str(exc)})
@@ -133,6 +142,7 @@ def main():
     converted,quality=convert_one_year(box,schedule,args.season,source)
     # Reject any games on or after the forecast date as input features.
     fitted=joblib.load(args.model)
+    fitted["enhanced_margin"]=joblib.load(Path(__file__).with_name("margin_v11.joblib"))
     if fitted.get('fit_through_season')!=2024:
         raise ValueError('Unexpected trained model version; refusing to silently change coefficients')
     if fitted.get('margin_cols')!=MARGIN_COLS or fitted.get('total_cols')!=TOTAL_COLS:
@@ -151,7 +161,7 @@ def main():
     schedule_date = pd.to_datetime(schedule.game_date, errors='coerce').dt.date
     complete = schedule.loc[(schedule_date < target) & schedule.status_type_completed.astype(str).str.lower().eq('true') & schedule.season.eq(args.season) & schedule.season_type.eq(2)]
     missing = complete.loc[~complete.game_id.isin(converted.SourceGameID), ['game_id','game_date','away_display_name','home_display_name']]
-    report={'status':'FITTED_HISTORICAL_BASELINE_ONLY_NOT_OFFICIAL_MASTER','season':args.season,
+    report={'status':'V1.1_FITTED_BASELINE_ONLY_NOT_FULL_MASTER','model_version':'v1.1','season':args.season,
             'asof_date_exclusive':args.date,'season_day':dnum,'season_games_used':used,
             'fixtures_emitted':len(result),'fixtures_skipped':skipped,
             'power_conference_fixtures':len(power),
