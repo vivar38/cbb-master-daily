@@ -1,43 +1,38 @@
-# CBB Master v1.0 fitted baseline — 2026-11-24
+# CBB Master v1.0 fitted baseline — 2026-11-25
 
-Generated (UTC): 2026-11-24T15:54:45.870145+00:00
-Prior completed games used: 1271/1272 (99.92%).
-Power-conference fixtures: 25; prospective at generation: 25.
+Generated (UTC): 2026-11-25T13:39:34.973811+00:00
+Prior completed games used: 1357/1357 (100.00%).
+Power-conference fixtures: 20; prospective at generation: 18.
 Status: VALIDATED FITTED BASELINE ONLY — not a full 16-point Master lock or betting advice.
 Current-season state, fixed 2018–24 fitted coefficients, five-game generic prior.
 
 | Tip (CT) | Away | Home | Away pts | Home pts | Home margin | Total | Pregame at generation |
 |---|---|---|---:|---:|---:|---:|---|
-| 2026-11-24 12:30:00-06:00 | Oklahoma Sooners | Pittsburgh Panthers | 71.08 | 77.21 | +6.12 | 148.29 | Yes |
-| 2026-11-24 13:30:00-06:00 | Ole Miss Rebels | BYU Cougars | 80.12 | 72.56 | -7.56 | 152.68 | Yes |
-| 2026-11-24 14:00:00-06:00 | Tennessee Volunteers | Maryland Terrapins | 69.62 | 72.14 | +2.52 | 141.76 | Yes |
-| 2026-11-24 14:00:00-06:00 | Miami Hurricanes | TCU Horned Frogs | 78.45 | 73.19 | -5.26 | 151.63 | Yes |
-| 2026-11-24 16:00:00-06:00 | Providence Friars | Arizona Wildcats | 71.86 | 75.52 | +3.65 | 147.38 | Yes |
-| 2026-11-24 16:30:00-06:00 | Creighton Bluejays | Michigan Wolverines | 73.92 | 80.87 | +6.96 | 154.79 | Yes |
-| 2026-11-24 16:30:00-06:00 | San Diego State Aztecs | Iowa State Cyclones | 74.23 | 69.34 | -4.89 | 143.57 | Yes |
-| 2026-11-24 17:00:00-06:00 | DePaul Blue Demons | Purdue Boilermakers | 72.66 | 65.04 | -7.62 | 137.70 | Yes |
-| 2026-11-24 17:00:00-06:00 | Sacred Heart Pioneers | Rutgers Scarlet Knights | 68.89 | 84.21 | +15.31 | 153.10 | Yes |
-| 2026-11-24 18:00:00-06:00 | Milwaukee Panthers | Florida Gators | 64.67 | 86.33 | +21.66 | 151.01 | Yes |
-| 2026-11-24 18:00:00-06:00 | Jacksonville Dolphins | Indiana Hoosiers | 63.17 | 90.86 | +27.69 | 154.03 | Yes |
-| 2026-11-24 18:00:00-06:00 | Vanderbilt Commodores | Ohio State Buckeyes | 74.75 | 76.66 | +1.91 | 151.41 | Yes |
-| 2026-11-24 18:00:00-06:00 | Samford Bulldogs | Georgia Tech Yellow Jackets | 70.76 | 83.66 | +12.91 | 154.42 | Yes |
-| 2026-11-24 18:00:00-06:00 | UMBC Retrievers | Iowa Hawkeyes | 63.84 | 81.23 | +17.39 | 145.07 | Yes |
-| 2026-11-24 18:00:00-06:00 | New Hampshire Wildcats | Seton Hall Pirates | 64.48 | 68.69 | +4.21 | 133.18 | Yes |
-| 2026-11-24 18:00:00-06:00 | Coppin State Eagles | Villanova Wildcats | 60.48 | 82.10 | +21.62 | 142.57 | Yes |
-| 2026-11-24 19:00:00-06:00 | Central Michigan Chippewas | Notre Dame Fighting Irish | 69.25 | 84.51 | +15.27 | 153.76 | Yes |
-| 2026-11-24 19:00:00-06:00 | Texas Tech Red Raiders | Louisville Cardinals | 76.60 | 69.30 | -7.30 | 145.90 | Yes |
-| 2026-11-24 19:00:00-06:00 | Lipscomb Bisons | Auburn Tigers | 69.68 | 81.72 | +12.04 | 151.40 | Yes |
-| 2026-11-24 19:00:00-06:00 | Clemson Tigers | Washington Huskies | 75.32 | 74.80 | -0.52 | 150.12 | Yes |
-| 2026-11-24 20:00:00-06:00 | UNC Asheville Bulldogs | Florida State Seminoles | 66.20 | 90.80 | +24.60 | 157.01 | Yes |
-| 2026-11-24 20:00:00-06:00 | Evansville Purple Aces | Missouri Tigers | 61.34 | 87.41 | +26.08 | 148.75 | Yes |
-| 2026-11-24 21:00:00-06:00 | Baylor Bears | Alabama Crimson Tide | 83.91 | 78.06 | -5.85 | 161.98 | Yes |
-| 2026-11-24 21:30:00-06:00 | Oregon Ducks | St. John's Red Storm | 75.15 | 81.19 | +6.04 | 156.34 | Yes |
-| 2026-11-24 22:59:00-06:00 | Stanford Cardinal | Colorado Buffaloes | 75.72 | 67.99 | -7.72 | 143.71 | Yes |
+| 2026-11-24 23:49:00-06:00 | Gonzaga Bulldogs | Kansas State Wildcats | 78.05 | 72.70 | -5.35 | 150.75 | No/unknown |
+| 2026-11-25 00:00:00-06:00 | Colorado Buffaloes | Stanford Cardinal | 67.99 | 75.74 | +7.76 | 143.73 | No/unknown |
+| 2026-11-25 11:00:00-06:00 | Virginia Cavaliers | Marquette Golden Eagles | 76.90 | 72.51 | -4.39 | 149.42 | Yes |
+| 2026-11-25 13:00:00-06:00 | Arizona State Sun Devils | LSU Tigers | 73.80 | 73.90 | +0.10 | 147.70 | Yes |
+| 2026-11-25 13:30:00-06:00 | Texas A&M Aggies | Xavier Musketeers | 81.52 | 74.60 | -6.92 | 156.12 | Yes |
+| 2026-11-25 13:30:00-06:00 | Ole Miss Rebels | Arizona Wildcats | 77.66 | 74.63 | -3.03 | 152.29 | Yes |
+| 2026-11-25 14:00:00-06:00 | Jackson State Tigers | Oklahoma State Cowboys | 61.21 | 94.81 | +33.60 | 156.02 | Yes |
+| 2026-11-25 15:30:00-06:00 | South Carolina Gamecocks | USC Trojans | 66.32 | 78.39 | +12.06 | 144.71 | Yes |
+| 2026-11-25 16:00:00-06:00 | Memphis Tigers | Penn State Nittany Lions | 74.84 | 81.16 | +6.31 | 156.00 | Yes |
+| 2026-11-25 16:00:00-06:00 | Southern Jaguars | Nebraska Cornhuskers | 56.98 | 90.18 | +33.20 | 147.16 | Yes |
+| 2026-11-25 16:30:00-06:00 | BYU Cougars | Providence Friars | 77.79 | 69.07 | -8.73 | 146.86 | Yes |
+| 2026-11-25 17:00:00-06:00 | UAlbany Great Danes | Syracuse Orange | 64.07 | 85.03 | +20.96 | 149.10 | Yes |
+| 2026-11-25 18:00:00-06:00 | UConn Huskies | Duke Blue Devils | 74.26 | 73.66 | -0.60 | 147.92 | Yes |
+| 2026-11-25 18:00:00-06:00 | Northeastern Huskies | Wisconsin Badgers | 70.62 | 80.06 | +9.44 | 150.69 | Yes |
+| 2026-11-25 18:00:00-06:00 | Norfolk State Spartans | NC State Wolfpack | 62.83 | 84.69 | +21.86 | 147.52 | Yes |
+| 2026-11-25 18:00:00-06:00 | SMU Mustangs | Utah State Aggies | 80.01 | 81.51 | +1.50 | 161.52 | Yes |
+| 2026-11-25 18:30:00-06:00 | Wake Forest Demon Deacons | Mississippi State Bulldogs | 74.52 | 72.96 | -1.56 | 147.49 | Yes |
+| 2026-11-25 20:30:00-06:00 | Grand Canyon Lopes | Colorado Buffaloes | 81.07 | 74.23 | -6.84 | 155.30 | Yes |
+| 2026-11-25 21:00:00-06:00 | Washington Huskies | VCU Rams | 75.27 | 70.98 | -4.29 | 146.25 | Yes |
+| 2026-11-25 22:59:00-06:00 | Stanford Cardinal | Saint Louis Billikens | 76.79 | 75.67 | -1.13 | 152.46 | Yes |
 
 Missing completed game boxes (if any):
-- 2026-11-23: North Carolina A&T Aggies at South Carolina State Bulldogs (ID 401921157)
+- None
 
 Source: SportsDataverse ESPN men’s college basketball public team box scores and schedules.
-Full validation and CSVs: [dated directory](./forecasts/2026-11-24).
+Full validation and CSVs: [dated directory](./forecasts/2026-11-25).
 No injury adjustments, market lines, or ATS/total probabilities have been applied.
 Check this report date and latest workflow status before use; a failed refresh leaves the last valid report unchanged.
