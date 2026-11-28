@@ -1,0 +1,61 @@
+{
+  "status": "V1.1_FITTED_BASELINE_ONLY_NOT_FULL_MASTER",
+  "model_version": "v1.1",
+  "season": 2027,
+  "asof_date_exclusive": "2026-11-28",
+  "season_day": 58,
+  "season_games_used": 1502,
+  "fixtures_emitted": 76,
+  "fixtures_skipped": [],
+  "power_conference_fixtures": 7,
+  "scheduled_completed_games_before_cutoff": 1504,
+  "missing_completed_games": [
+    {
+      "game_id": 401920737,
+      "game_date": "2026-11-27",
+      "away_display_name": "Northeastern Huskies",
+      "home_display_name": "Northwestern Wildcats"
+    },
+    {
+      "game_id": 401929289,
+      "game_date": "2026-11-27",
+      "away_display_name": "Penn State Nittany Lions",
+      "home_display_name": "Mississippi State Bulldogs"
+    }
+  ],
+  "latest_box_date": "2026-11-27",
+  "source_freshness_warning": "A local CSV snapshot is not a live feed. Refresh before each subsequent slate; verify provider timestamp and coverage.",
+  "public_source": "SportsDataverse ESPN team boxes + schedules",
+  "data_quality": {
+    "season": 2027,
+    "team_box_rows": 3004,
+    "schedule_rows": 6076,
+    "completed_games_converted": 1502,
+    "unpaired_or_missing_data_games": 0,
+    "malformed_or_unknown_period_games": 0,
+    "unknown_period_games": 0,
+    "min_day_num": 31,
+    "max_day_num": 57,
+    "teams": 616,
+    "duplicate_fixture_groups": 0,
+    "identical_duplicates_removed": 0,
+    "conflicting_games_quarantined": 0
+  },
+  "historical_training_ends": 2024,
+  "warning": "No 16-point personnel audit, current line audit or fitted ATS/total probabilities",
+  "generated_at_utc": "2026-11-28T13:16:22.328895+00:00",
+  "coverage": 0.9986702127659575,
+  "prior_unresolved": 0,
+  "missing_games_involving_today_power_teams": 0,
+  "prospective_power_games": 7,
+  "source_sha256": {
+    "team_box": "28864fbe17049fb00dc6119d36d6490d0b216b7a59b5634e85136d66fb3b95b9",
+    "schedule": "d69e3425c0d6a79f4d53c0abacb8db78b6f1ce4f77ffb9795365b588e252b2fa",
+    "fitted_model": "4e624ccde46cb82bf9eb9d0eba6486bd910b3433df6918d9589f57d83607e529",
+    "engine": "6fb9d8e192c62aadf27a6c1b9cfb0b67387bd1520f91fa245be8cd2bbdb05059",
+    "enhanced_margin_code": "6b05bd6a6123e6c744d99e79533882826549120bf6a310e1420a61e7799b4a49",
+    "enhanced_margin_fit": "6071925eec4251bf5e249ed8f89333826fb63547b262a71c658c9fdf13ef564f"
+  },
+  "publication_status": "VALIDATED_BASELINE_ONLY",
+  "validation_policy": "At least 99% completed schedule coverage; zero unresolved prior fixtures, duplicate keys or missing boxes involving today power teams. Does not independently verify completeness against all external scoreboards."
+}
